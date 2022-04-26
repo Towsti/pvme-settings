@@ -27,3 +27,6 @@ pvme-guides
 
 # pipenv
 Pipfile.lock
+
+# build files
+build

@@ -1,12 +1,14 @@
 import json
 import os
 
-from dotenv import load_dotenv
 import gspread
 from google.oauth2.service_account import Credentials as ServiceAccountCredentials
 
-
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 GS_URL = os.environ.get('GS_URL')
 GS_PRIVATE_KEY = os.environ.get('GS_PRIVATE_KEY')

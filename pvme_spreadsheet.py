@@ -10,10 +10,10 @@ try:
 except ImportError:
     pass
 
-GS_URL = os.environ.get('GS_URL')
-GS_PRIVATE_KEY = os.environ.get('GS_PRIVATE_KEY')
-GS_CLIENT_EMAIL = os.environ.get('GS_CLIENT_EMAIL')
-GS_TOKEN_URI = os.environ.get('GS_TOKEN_URI')
+GS_URL = os.environ['GS_URL']
+GS_PRIVATE_KEY = os.environ['GS_PRIVATE_KEY']
+GS_CLIENT_EMAIL = os.environ['GS_CLIENT_EMAIL']
+GS_TOKEN_URI = os.environ['GS_TOKEN_URI']
 
 
 def get_sheet():

@@ -1,7 +1,10 @@
 name: daily
 on:
+  push:
+    branches:
+      - updater
   schedule:
-    - cron: '0 1 * * *'
+    - cron: '0 1 * * *' # once per day
 jobs:
   deploy:
     runs-on: ubuntu-latest

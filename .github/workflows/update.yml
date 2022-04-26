@@ -1,13 +1,15 @@
-name: daily
+name: update
+
 on:
   push:
     branches:
       - updater
   schedule:
     - cron: '0 1 * * *' # once per day
+
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
 

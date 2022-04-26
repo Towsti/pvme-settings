@@ -28,6 +28,11 @@ jobs:
 
       - name: update pvme-spreadsheet
         run: pipenv run python pvme_spreadsheet.py
+        env:
+          GS_URL: ${{secrets.GS_URL}}
+          GS_PRIVATE_KEY: ${{secrets.GS_PRIVATE_KEY}}
+          GS_CLIENT_EMAIL: ${{secrets.GS_CLIENT_EMAIL}}
+          GS_TOKEN_URI: ${{secrets.GS_TOKEN_URI}}
 
       - name: deploy build artifacts
         uses: s0/git-publish-subdir-action@develop

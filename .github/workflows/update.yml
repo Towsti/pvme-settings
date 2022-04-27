@@ -10,8 +10,14 @@ on:
 jobs:
   deploy:
     runs-on: windows-latest
+    env:
+      GS_URL: ${{secrets.GS_URL}}
+      GS_PRIVATE_KEY: ${{secrets.GS_PRIVATE_KEY}}
+      GS_CLIENT_EMAIL: ${{secrets.GS_CLIENT_EMAIL}}
+      GS_TOKEN_URI: ${{secrets.GS_TOKEN_URI}}
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/checkout@v3
 
       - name: Setup python
         uses: actions/setup-python@v3
@@ -28,11 +34,6 @@ jobs:
 
       - name: update pvme-spreadsheet
         run: pipenv run python pvme_spreadsheet.py
-        env:
-          GS_URL: ${{secrets.GS_URL}}
-          GS_PRIVATE_KEY: ${{secrets.GS_PRIVATE_KEY}}
-          GS_CLIENT_EMAIL: ${{secrets.GS_CLIENT_EMAIL}}
-          GS_TOKEN_URI: ${{secrets.GS_TOKEN_URI}}
 
       - name: deploy build artifacts
         uses: s0/git-publish-subdir-action@develop
@@ -40,5 +41,7 @@ jobs:
           REPO: self
           BRANCH: master
           FOLDER: build
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MESSAGE: "Build: ({sha}) {msg}"
+          CLEAR_GLOBS_FILE: ".clear-target-files"
+          SQUASH_HISTORY: true
